@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<meta name="theme-color" content="#b6d8ef" />
+<meta name="description" content="Supermarket Birding — An artificial habitat in the open sky." />
+<title>Supermarket Birding — Sky Portal Study 003</title>
+<link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+<div id="app" class="mode-outside">
+  <canvas id="webgl" aria-label="Three.js 3D 超市影像体与天空场景"></canvas>
+  <div id="gl-fallback" hidden>WebGL 无法初始化，请尝试使用 Chrome 或 Safari 并启用硬件加速。</div>
+  <div class="vignette" aria-hidden="true"></div>
+  
+  <div class="scroll-indicator" id="scroll-indicator"><div class="scroll-orbit"><div class="scroll-dot"></div></div><span>SCROLL TO APPROACH</span><span class="down-arrow">↓</span></div>
+  <button id="skip-button" class="skip-button">ENTER HABITAT <span>↗</span></button>
+  <section id="inside-ui" aria-label="超市内部观鸟界面" aria-hidden="true">
+    <div id="release-sky" aria-hidden="true" hidden></div>
+    <div class="binocular-overlay" aria-hidden="true"><div class="lens lens-left"></div><div class="lens lens-right"></div><div class="aim-reticle"></div>    <svg id="released-bird" viewBox="0 0 100 80" aria-hidden="true" hidden><path d="M50 45C37 29 20 16 4 12 17 29 18 45 43 51L35 68 50 59 63 70 56 51C75 47 83 28 97 17 76 18 62 30 54 43L59 34Q63 29 69 31L75 34 67 35Q63 33 61 38L59 47Z" fill="currentColor"/></svg></div>
+
+  </section>
+  <section id="product-ui" aria-label="扫描商品观察" hidden>
+
+    <div id="product-reticle" class="aim-reticle" aria-hidden="true"></div>
+
+  </section>
+  <section id="capture-card" aria-label="已捕获的鸟类商品记录" hidden><img id="capture-image" alt="捕获时的扫描商品影像"/></section>
+  <nav id="habitat-tools" aria-label="观察工具" hidden inert>
+    <button id="tools-toggle" aria-expanded="false" aria-controls="tools-panel" aria-label="展开或收起观察工具">☰</button>
+    <div id="tools-panel" hidden inert>
+      <div class="tool-group" data-tool-mode="habitat"><button id="zoom-button" aria-pressed="false">ZOOM 1×</button><button id="spot-button" aria-pressed="false">LOCK VIEW ⌖</button><button id="resume-button" hidden>RESUME LOOK ↗</button><button id="collection-button" hidden>SIGHTING 01 ↗</button><button id="exit-button">BACK TO SKY ↖</button></div>
+      <div class="tool-group" data-tool-mode="product" hidden inert><button id="close-product">BACK TO HABITAT ↖</button><button id="inspect-button" disabled>CAPTURE BIRD ⌖</button><button id="product-collection" hidden>SIGHTING 01 ↗</button></div>
+      <div class="tool-group" data-tool-mode="record" hidden inert><button id="capture-card-close">CAPTURED 01 ✓ · CLOSE ↗</button></div>
+    </div>
+  </nav>
+  <div id="loading" class="loading">PREPARING HABITAT <span id="loading-symbol">·</span></div>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

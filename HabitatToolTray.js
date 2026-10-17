@@ -1,0 +1,50 @@
+// This lives directly under #app, outside every optical/scene stacking context.
+export class HabitatToolTray {
+ constructor(){
+  this.root=document.getElementById('habitat-tools');
+  this.toggle=document.getElementById('tools-toggle');
+  this.panel=document.getElementById('tools-panel');
+  this.expanded=false;this.keyboard=false;
+  this.root.addEventListener('pointerenter',()=>{
+   clearTimeout(this.closeTimer);
+   if(!this.expanded)this.openTimer=setTimeout(()=>this.setExpanded(true),350);
+  });
+  this.root.addEventListener('pointerleave',()=>{
+   clearTimeout(this.openTimer);
+   this.closeTimer=setTimeout(()=>{
+    if(!this.keyboard||!this.root.contains(document.activeElement))this.setExpanded(false);
+   },600);
+  });
+  this.toggle.addEventListener('click',()=>this.setExpanded(!this.expanded));
+  this.root.addEventListener('focusin',e=>{
+   if(e.target!==this.toggle||this.keyboard)this.setExpanded(true);
+  });
+  this.root.addEventListener('focusout',e=>{
+   if(!this.root.contains(e.relatedTarget))this.setExpanded(false);
+  });
+  window.addEventListener('keydown',e=>{if(e.key==='Tab')this.keyboard=true});
+  window.addEventListener('pointerdown',e=>{
+   this.keyboard=false;
+   if(!this.root.contains(e.target))this.setExpanded(false);
+  });
+  this.setMode('habitat');this.setInside(false);
+ }
+ setExpanded(value){
+  clearTimeout(this.openTimer);clearTimeout(this.closeTimer);
+  this.expanded=value;
+  if(!value&&this.panel.contains(document.activeElement))this.toggle.focus({preventScroll:true});
+  this.toggle.setAttribute('aria-expanded',String(value));
+  this.root.classList.toggle('expanded',value);
+  this.panel.hidden=!value;this.panel.inert=!value;
+ }
+ setMode(mode){
+  for(const group of this.panel.querySelectorAll('[data-tool-mode]')){
+   group.hidden=group.dataset.toolMode!==mode;
+   group.inert=group.hidden;
+  }
+ }
+ setInside(value){
+  this.root.hidden=!value;this.root.inert=!value;
+  if(!value)this.setExpanded(false);
+ }
+}
