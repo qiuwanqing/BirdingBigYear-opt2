@@ -111,3 +111,9 @@ The volume's offscreen target uses 4-sample MSAA, since canvas antialiasing does
 The cube's existing volume shader now adds a restrained dielectric finish inspired by the local “A Change of Perspective” sphere: angle-dependent Fresnel reflection, refracted panorama contribution (nominal IOR 1.45), and stronger radiance at grazing rounded edges. `uGlass` controls the amount (currently 0.7). This is a surface approximation blended with the video volume, not a second physical transmission mesh. Both samples use the current panorama with its inverse world rotation, so dragging updates the reflected environment consistently. The complete finish is applied before the existing blackout, so reflections disappear with the imagery during entry. Geometry, video-history sampling and continuous silhouette blur are retained. Chrome rendered on/off and rotated comparisons without shader errors; the fully black threshold was visually verified. The production build passes.
 
 The repository playback video is a web-size H.264 encode at 960 × 540, 66.68 seconds, target 2.5 Mbps (approximately 20 MB). Audio is omitted because playback is muted. The original source video in Downloads is unchanged.
+
+## GitHub Pages
+
+The production base is `/BirdingBigYear-opt2/`, configured in `vite.config.js`. `.github/workflows/deploy.yml` runs `npm ci` and `npm run build` with Node 22 on pushes to `main` or manual dispatch, then publishes `dist` using GitHub Pages Actions. In Settings → Pages, keep Source set to GitHub Actions. The expected site URL is https://qiuwanqing.github.io/BirdingBigYear-opt2/.
+
+All active local images, the panorama, MP4 and GLBs are imported through Vite (`?url` or the video glob), so their built paths include the repository base. GLB textures are embedded. Google Fonts remains the existing external stylesheet, with the existing system-font fallbacks. No visual, shader or interaction changes are part of this deployment configuration.
