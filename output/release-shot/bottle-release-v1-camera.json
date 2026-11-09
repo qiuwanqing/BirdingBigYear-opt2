@@ -1,0 +1,23 @@
+{
+  "id": "bottle-release-v1",
+  "width": 1080,
+  "height": 1080,
+  "fov": 38,
+  "position": [
+    0,
+    0,
+    1.8
+  ],
+  "target": [
+    0,
+    0,
+    0
+  ],
+  "pivotRotation": [
+    0,
+    0,
+    0
+  ],
+  "exposure": 1.18,
+  "transitionSeconds": 0.95
+}

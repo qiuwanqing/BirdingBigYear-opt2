@@ -1,0 +1,23 @@
+{
+  "id": "bottle-release-v2-closeup",
+  "width": 1080,
+  "height": 1080,
+  "fov": 38,
+  "position": [
+    0.015,
+    -0.12,
+    0.68
+  ],
+  "target": [
+    0.015,
+    -0.12,
+    0.14
+  ],
+  "pivotRotation": [
+    0,
+    0,
+    0
+  ],
+  "exposure": 1.18,
+  "transitionSeconds": 0.95
+}

@@ -1,0 +1,12 @@
+# Egret multi-view flight atlas v1
+
+Generated with the built-in image_gen tool on 2026-11-09.
+Asset: egret-multiview-atlas-v1.png, RGBA, 1536 × 1024.
+Layout: 6 columns × 4 rows, 256 × 256 pixels per cell.
+Rows: side flight; oblique front; oblique rear; banking/gliding.
+This is a generated source atlas, not yet a validated seamless animation.
+Check torso registration, anatomical consistency, cell boundaries and loop transitions before runtime integration. Integrated into SkyArchiveView through BirdFlightAtlas.js. Frames are selected by flight direction with independent per-bird timing; generated frame registration and transitions remain subject to visual review.
+
+## Generation prompt
+
+Use case: stylized-concept. Create a production sprite atlas for a Three.js paper-cutout bird flight animation. Reference the user's egret flock photos for natural avian anatomy, varying viewpoints, asymmetric banking wings and long trailing legs. This is NOT a flock illustration: it is exactly 24 separate full-body silhouette frames on a perfectly regular 6 columns by 4 rows grid, equal square cells, transparent background, no grid lines, no lettering, no shadows. Each bird centered on its torso at exactly the same position in each cell, consistent body size, all wing tips and legs comfortably inside its own cell with 12% padding. Same elegant egret in every cell, solid near-black ink silhouette, delicate tapered bill, natural folded S neck, long legs trailing, anatomically convincing articulated wings with subtle separated primary feather tips. Paper cutout look, no interior coloring or photographic shading. Row 1: left-facing side flight, six sequential wingbeat phases from fully raised through horizontal to fully down and recovery. Row 2: oblique three-quarter front flight heading toward left and viewer, six corresponding wingbeat phases, visibly foreshortened body and differing near/far wings. Row 3: oblique three-quarter rear flight heading away toward right, six wingbeat phases, back and tail visible, trailing legs, head small. Row 4: six distinct smoothly related banking/gliding poses, turning from left side through near-frontal bank to right three-quarter rear, wings at unequal heights, dramatic but believable changes in silhouette. Clear visible difference between rows. Preserve same bird identity and plausible proportions, no rubber stretching, no standing birds, no repeated identical side views. Wide atlas aspect 3:2, high resolution.

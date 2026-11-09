@@ -7,7 +7,7 @@ const movementCodes=new Set(['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','
 
 export class HabitatControls {
  constructor(canvas,enabled){
-  this.canvas=canvas;this.enabled=enabled;this.keys=new Set();
+  this.canvas=canvas;this.enabled=enabled;this.keys=new Set();this.walkBounds=WALK_BOUNDS;
   this.position=new THREE.Vector3(0,1.5,4.6);
   this.yaw=0;this.pitch=0;this.baseYaw=0;this.pointerId=null;
   this.pointerActive=false;this.pointerX=0;this.pointerY=0;
@@ -45,6 +45,7 @@ export class HabitatControls {
   window.addEventListener('blur',()=>this.stop());
   document.addEventListener('visibilitychange',()=>{if(document.hidden)this.stop()});
  }
+ setWalkBounds(bounds){this.walkBounds=bounds||WALK_BOUNDS}
  look(dx,dy){
   this.yaw-=dx*.004;this.baseYaw=this.yaw;
   this.pitch=THREE.MathUtils.clamp(this.pitch-dy*.004,-1.15,1.15);
@@ -71,8 +72,8 @@ export class HabitatControls {
   const step=Math.min(dt,.06)*1.15/length;
   this.position.x+=(-Math.sin(this.yaw)*forward+Math.cos(this.yaw)*side)*step;
   this.position.z+=(-Math.cos(this.yaw)*forward-Math.sin(this.yaw)*side)*step;
-  this.position.x=THREE.MathUtils.clamp(this.position.x,WALK_BOUNDS.left,WALK_BOUNDS.right);
-  this.position.z=THREE.MathUtils.clamp(this.position.z,WALK_BOUNDS.front,WALK_BOUNDS.back);
+  this.position.x=THREE.MathUtils.clamp(this.position.x,this.walkBounds.left,this.walkBounds.right);
+  this.position.z=THREE.MathUtils.clamp(this.position.z,this.walkBounds.front,this.walkBounds.back);
   camera.position.copy(this.position);
   camera.rotation.set(this.pitch,this.yaw,0,'YXZ');
  }
